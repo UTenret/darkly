@@ -22,6 +22,15 @@ http://localhost:13080/index.php?page=feedback
 Name: a
 0FBB54BBF7D099713CA4BE297E1BC7DA0173D8B3C21C1811B916A3A86652724E
 
-### Flag 04
+### Flag 04 (WIP)
 
 Hashcrack this http://localhost:13080/index.php?page=b7e44c7a40c5f80139f0a50f3650fb2bd8d00b0d24667c4c2ca32c88e13b758f
+
+### Flag 05 (WIP)
+
+a weirdly loaded image http://localhost:13080/index.php?page=media&src=1
+
+### Flag 06 (WIP)
+
+Wtf?
+http://localhost:13080/index.php?page=

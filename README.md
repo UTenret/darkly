@@ -15,3 +15,9 @@ Change value to 11 (negative didn't work)
 http://localhost:13080/index.php?page=recover
 Change webmaster@borntosec.com to whatever
 1D4855F7337C0C14B6F44946872C4EB33853F40B2D54393FBE94F49F1E19BBB0
+
+### Flag 03
+
+http://localhost:13080/index.php?page=feedback
+Name: a
+0FBB54BBF7D099713CA4BE297E1BC7DA0173D8B3C21C1811B916A3A86652724E

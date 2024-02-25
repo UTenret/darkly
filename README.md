@@ -34,3 +34,7 @@ a weirdly loaded image http://localhost:13080/index.php?page=media&src=1
 
 Wtf?
 http://localhost:13080/index.php?page=
+
+### Flag 07 (WIP)
+
+cookie I_am_admin

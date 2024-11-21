@@ -101,15 +101,17 @@ cookie I_am_admin
 
 ### Flag 08 d19b4823e0d5600ceed56d5e896ef328d7a2b9e7ac7e80f4fcdb9b10bcb3e7ff
 
+found this dir using gobuster
+
 http://localhost:8080/whatever/
 
-htpasswd file
+there is a htpasswd file containing
 
+```
 `root:437394baff5aa33daa618be47b75cb49`
+```
 
-Cracking the Password Using John the Ripper
-
-To crack the password from the `.htpasswd` file using John the Ripper, run the following command:
+Seems to be hashed in md5, we cracked the password using John the Ripper:
 
 ```bash
 ../john/run/john --format=Raw-MD5 htpasswd

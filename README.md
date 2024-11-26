@@ -1,3 +1,5 @@
+### This is a project that is meant as an intro to web security in the form of a CTF challenge where we need to find 14 flags
+
 ### Flag 00 03A944B434D5BAFF05F46C4BEDE5792551A2595574BCAFC9A6E25F67C382CCAA
 
 The first vulnerability we found is the possibility to cheat very easily on a survey hosted on the website.

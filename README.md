@@ -166,7 +166,7 @@ http://localhost:13080/index.php?page=feedback
 Name: a
 0FBB54BBF7D099713CA4BE297E1BC7DA0173D8B3C21C1811B916A3A86652724E
 
-### Flag 04 (WIP)
+### Flag 04 f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188
 
 found this page by clicking on the very bottom of the screen on "© BornToSec"
 

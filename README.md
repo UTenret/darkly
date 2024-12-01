@@ -1,6 +1,6 @@
 ### This is a project that is meant as an intro to web security in the form of a CTF challenge where we need to find 14 flags
 
-### Flag 00 03A944B434D5BAFF05F46C4BEDE5792551A2595574BCAFC9A6E25F67C382CCAA
+### Flag 00 03A944B434D5BAFF05F46C4BEDE5792551A2595574BCAFC9A6E25F67C382CCAA SERVER SIDE VALIDATION
 
 The first vulnerability we found is the possibility to cheat very easily on a survey hosted on the website.
 The server assumes the values as being from 1 to 10, but you can send the request with a much higher grade.
@@ -9,7 +9,7 @@ http://localhost:13080/?page=survey
 Inspect option of Ben
 Change value to 11 (negative didn't work)
 
-### Flag 01 10A16D834F9B1E4068B25C4C46FE0284E99E44DCEAF08098FC83925BA6310FF5
+### Flag 01 10A16D834F9B1E4068B25C4C46FE0284E99E44DCEAF08098FC83925BA6310FF5 SQL INJECTION
 
 Search members page queries the database directly using SQL
 
@@ -146,7 +146,7 @@ Session completed.
 
 now we we lower case to : fortytwo, encode it to sha256 as asked and tada : 10A16D834F9B1E4068B25C4C46FE0284E99E44DCEAF08098FC83925BA6310FF5
 
-### Flag 02 1D4855F7337C0C14B6F44946872C4EB33853F40B2D54393FBE94F49F1E19BBB0
+### Flag 02 1D4855F7337C0C14B6F44946872C4EB33853F40B2D54393FBE94F49F1E19BBB0 VALIDATION-BYPASS, NEED SERVER SIDE VALIDATION
 
 http://localhost:13080/index.php?page=recover
 when asking to recover the password, the form has a hidden field
@@ -158,7 +158,7 @@ when asking to recover the password, the form has a hidden field
 Change webmaster@borntosec.com to whatever
 1D4855F7337C0C14B6F44946872C4EB33853F40B2D54393FBE94F49F1E19BBB0
 
-### Flag 03 0FBB54BBF7D099713CA4BE297E1BC7DA0173D8B3C21C1811B916A3A86652724E
+### Flag 03 0FBB54BBF7D099713CA4BE297E1BC7DA0173D8B3C21C1811B916A3A86652724E this one we will never know what the vulnerability was ?? click on a button i guess
 
 Don't really get this one, just input 'a' as name and nothing as message and you get a flag
 
@@ -166,7 +166,7 @@ http://localhost:13080/index.php?page=feedback
 Name: a
 0FBB54BBF7D099713CA4BE297E1BC7DA0173D8B3C21C1811B916A3A86652724E
 
-### Flag 04 f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188
+### Flag 04 f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188 Referrer-Based Access Control Bypass and User-Agent Manipulation
 
 found this page by clicking on the very bottom of the screen on "© BornToSec"
 
@@ -217,7 +217,9 @@ crafting the curl command and doing a diff :
 > <center><h2 style="margin-top:50px;"> The flag is : f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188</h2><br/><img src="images/win.png" alt="" width=200px height=200px></center> <audio id="best_music_ever" src="audio/music.mp3"preload="true" loop="loop" autoplay="autoplay">
 ```
 
-### Flag 05 928d819fc19405ae09921a2b71227bd9aba106f9d2d37ac412e9e5a750f1506d
+### Flag 05 928d819fc19405ae09921a2b71227bd9aba106f9d2d37ac412e9e5a750f1506d XSS, Cross site scripting
+
+How to defend: validate and sanitize input
 
 a weirdly loaded image http://localhost:13080/index.php?page=media&src=1
 
@@ -245,7 +247,9 @@ gets us the flag
  The flag is : 928d819fc19405ae09921a2b71227bd9aba106f9d2d37ac412e9e5a750f1506d
 ```
 
-### Flag 06 b3a6e43ddf8b4bbb4125e5e7d23040433827759d4de1c04ea63907479a80a6b2
+### Flag 06 b3a6e43ddf8b4bbb4125e5e7d23040433827759d4de1c04ea63907479a80a6b2 bruteforce
+
+How to defend : password policy, non-simple passwords
 
 intuition is last flag is probably signin page
 let's try and bruteforce the password
@@ -293,7 +297,9 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-11-29 13:48:
 
 not very secure hm, using any user with shadow as password leads to : "The flag is : b3a6e43ddf8b4bbb4125e5e7d23040433827759d4de1c04ea63907479a80a6b2 " !
 
-### Flag 07 df2eb4ba34ed059a1e3e89ff4dfc13445f104a1a52295214def1c4fb1693a5c3
+### Flag 07 df2eb4ba34ed059a1e3e89ff4dfc13445f104a1a52295214def1c4fb1693a5c3 Weak Hash-based Authentication Bypass
+
+How to defend: HTTP-only cookie, secure hash (MD5 is outdated), server side auth, better auth logic
 
 cookie I_am_admin
 
@@ -337,6 +343,8 @@ Good job! Flag : df2eb4ba34ed059a1e3e89ff4dfc13445f104a1a52295214def1c4fb1693a5c
 
 ### Flag 08 d19b4823e0d5600ceed56d5e896ef328d7a2b9e7ac7e80f4fcdb9b10bcb3e7ff
 
+How to defend: Assume everything can be found and implement proper needed auth, also dont use weak hashing like MD5 & better password policy
+
 found this dir using gobuster
 
 http://localhost:8080/whatever/
@@ -370,6 +378,8 @@ using root as username and qwerty123@ as password, which gets us the flag
 
 ### FLAG 09 b12c4b2cb8094750ae121a676269aa9e2872d07c06e429d25a63196ec1c8c1d0 LOCAL FILE INCLUSION
 
+How to defend: Always validate and sanitize user inputs, sensitive files should need privileged/admin access, use a web application firewall
+
 http://localhost:8080/index.php?page=../../../../etc/passwd
 
 ALMOST
@@ -388,7 +398,9 @@ which gives us
 Congratulaton!! The flag is : b12c4b2cb8094750ae121a676269aa9e2872d07c06e429d25a63196ec1c8c1d0
 ```
 
-### FLAG 10 F2A29020EF3132E01DD61DF97FD33EC8D7FCD1388CC9601E7DB691D17D4D6188
+### FLAG 10 F2A29020EF3132E01DD61DF97FD33EC8D7FCD1388CC9601E7DB691D17D4D6188 SQL INJECTION
+
+How to defend:
 
 SEARCH IMAGE, IMAGE NUMBER 5
 

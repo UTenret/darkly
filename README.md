@@ -4,6 +4,14 @@ Port forwarding : Guest 80 -> Host 8080
 
 A PHP website is now live on `localhost:8080`.
 
+## Random Axel tests
+
+`http://localhost:8080/?page=../../../../etc/passwd`
+
+`http://localhost:8080/?page=../../../../../../../etc/passwd`
+
+## ↓↓↓ CLEAN THIS ↓↓↓
+
 ### This is a project that is meant as an intro to web security in the form of a CTF challenge where we need to find 14 flags
 
 ### Flag 00 03A944B434D5BAFF05F46C4BEDE5792551A2595574BCAFC9A6E25F67C382CCAA SERVER SIDE VALIDATION

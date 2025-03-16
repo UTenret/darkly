@@ -4,11 +4,17 @@ Port forwarding : Guest 80 -> Host 8080
 
 A PHP website is now live on `localhost:8080`.
 
-## Random Axel tests
+## Axel Random
 
 `http://localhost:8080/?page=../../../../etc/passwd` (non)
 
 `http://localhost:8080/?page=../../../../../../../etc/passwd` (oui)
+
+TODO: enumeration on ?page=
+
+`index.php?page=redirect&site=http://evil.tld/phishing`
+
+Unvalidated Redirects vs Open Redirects
 
 ## ↓↓↓ CLEAN THIS ↓↓↓
 

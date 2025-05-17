@@ -1,14 +1,18 @@
 ENUMERATION_DIR := KaliLists
+PASSWORDS_DIR := SecLists
 
 setup:
 	brew install gobuster hydra
+	pip install -r requirements.txt
 	@if [ ! -d "$(ENUMERATION_DIR)" ]; then \
 		git clone git@github.com:3ndG4me/$(ENUMERATION_DIR).git; \
 	fi
-	pip install -r requirements.txt
+	@if [ ! -d "$(PASSWORDS_DIR)" ]; then \
+		git clone git@github.com:danielmiessler/$(PASSWORDS_DIR).git; \
+	fi
 
 clean:
-	rm -rf $(ENUMERATION_DIR)
+	rm -rf $(ENUMERATION_DIR) $(PASSWORDS_DIR) hydra.store
 
 resetup:
 	@$(MAKE) clean

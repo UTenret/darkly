@@ -1,4 +1,4 @@
-Vulnerability name: Bruteforce attack with a dictionnary
+## Bruteforce attack with a dictionary
 
 How to defend : password policy, non-simple passwords
 

@@ -13,7 +13,7 @@ $ python brute_force_attack/resources/parallel.py
 [SUCCESS] Username: user | Password: shadow
 ```
 
-It looks like all users have at least the `shadow` password.
+It looks like all users have at least the `shadow` password. Signing in with any combination gives the flag: `b3a6e43ddf8b4bbb4125e5e7d23040433827759d4de1c04ea63907479a80a6b2`.
 
 This vulnerability can be prevented with:
 

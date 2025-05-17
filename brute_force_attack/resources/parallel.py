@@ -19,7 +19,7 @@ async def attempt_login(session, username, password):
 
     try:
         async with session.get(
-            "http://localhost:8080/index.php", params=params, timeout=120
+            "http://localhost:8080/index.php", params=params, timeout=180
         ) as response:
             if response.status != 200:
                 await print_result(Fore.YELLOW, "NON-200", username, password)

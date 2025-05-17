@@ -1,6 +1,6 @@
 ## [Unrestricted File Upload](https://owasp.org/www-community/vulnerabilities/Unrestricted_File_Upload)
 
-This vulnerability is on the File Upload page: http://localhost:8080/index.php?page=upload.
+This vulnerability is on the fie upload page: http://localhost:8080/index.php?page=upload.
 
 By tring to upload several files, we can see that we can seemingly only send `.jpg` or `.jpeg` files:
 

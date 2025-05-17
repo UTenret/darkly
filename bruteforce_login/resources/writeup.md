@@ -1,5 +1,7 @@
 ## Bruteforce attack with a dictionary
 
+This vulnerability is on the signin page: http://localhost:8080/index.php?page=signin.
+
 How to defend : password policy, non-simple passwords
 
 intuition is last flag is probably signin page

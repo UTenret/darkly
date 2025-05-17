@@ -1,10 +1,24 @@
 # darkly
 
-Port forwarding: Guest 80 → Host 8080
+This project is meant as an introduction to web security.
 
-A PHP website is now live on `localhost:8080`.
+Download `Darkly_i386.iso`, launch it and setup the port forwarding rule: Guest 80 → Host 8080.
 
-## gobuster commands
+An insecure PHP website is now live on `localhost:8080`. There are 14 flags to find.
+
+## TODELETE AXEL RANDOM
+
+`http://localhost:8080/?page=../../../../etc/passwd` (non)
+
+`http://localhost:8080/?page=../../../../../../../etc/passwd` (oui)
+
+TODO: enumeration on ?page=
+
+`index.php?page=redirect&site=http://evil.tld/phishing`
+
+Unvalidated Redirects vs Open Redirects
+
+## TODELETE GOBUSTER COMMANDS
 
 ```console
 $ git clone git@github.com:3ndG4me/KaliLists.git

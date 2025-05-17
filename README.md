@@ -1,16 +1,16 @@
 # darkly
 
-Port forwarding : Guest 80 → Host 8080
+Port forwarding: Guest 80 → Host 8080
 
 A PHP website is now live on `localhost:8080`.
 
 ## gobuster commands
 
-```shell
+```console
 $ git clone git@github.com:3ndG4me/KaliLists.git
 ```
 
-```shell
+```console
 $ gobuster dir -u http://localhost:8080/ -w KaliLists/dirb/big.txt --exclude-length 975
 ===============================================================
 Gobuster v3.6
@@ -44,7 +44,7 @@ Finished
 ===============================================================
 ```
 
-```shell
+```console
 $ gobuster dir -u http://localhost:8080/images -w KaliLists/dirb/big.txt -x gif,jpg,jpeg,png --exclude-length 975
 ===============================================================
 Gobuster v3.6

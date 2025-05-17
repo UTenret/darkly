@@ -21,24 +21,3 @@
 ### FLAG 10 F2A29020EF3132E01DD61DF97FD33EC8D7FCD1388CC9601E7DB691D17D4D6188 SQL INJECTION
 
 ### FLAG 11 b9e775a0291fed784a2d9680fcfad7edd6b8cdf87648da647aaf4bba288bcab3
-
-## FLAG 12 d5eec3ec36cf80dce44a896f961c1831a05526ec215693c8f2c39543497d4466
-
-gobuster gave us robots.txt
-which says to hid /whatever (already got the flag there) and /.hidden
-
-there is a bunch of files and dir in /.hidden
-
-tried to see if there was any meaning to the names of the dir and files but nothing
-all files have a readme which taunts us like "Try again"
-
-so we need to make a crawler, which we do and search for keyword flag and it works the first time, we could also have just removed all the few special messages
-in the other readmes, or search by size but flag works
-
-and we get
-
-```
-Hey, here is your flag : d5eec3ec36cf80dce44a896f961c1831a05526ec215693c8f2c39543497d4466
-```
-
-in http://localhost:8080/.hidden/whtccjokayshttvxycsvykxcfm/igeemtxnvexvxezqwntmzjltkt/lmpanswobhwcozdqixbowvbrhw/README

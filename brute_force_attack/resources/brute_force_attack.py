@@ -23,6 +23,8 @@ def attempt_login(username, password):
         assert "WrongAnswer.gif" not in response.text
         print_result(Fore.GREEN, "SUCCESS", username, password)
     except requests.Timeout:
+        print_result(Fore.RED, "TIMEOUT", username, password)
+    except AssertionError:
         print_result(Fore.RED, "FAILURE", username, password)
 
 

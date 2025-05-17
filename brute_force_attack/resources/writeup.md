@@ -4,10 +4,10 @@ This vulnerability is on the signin page: http://localhost:8080/index.php?page=s
 
 The root password found in http://localhost:8080/whatever/htpasswd doesn't work.
 
-We tried bruteforcing with `hydra` and `ffuz` but kept getting timeouts from the server. We ended up writing our own bruteforce attacker for more control.
+We tried bruteforcing with `hydra` and `ffuz` but kept getting timeouts from the server. We ended up writing our own asynchronous bruteforce attacker for more control.
 
 ```console
-$ python brute_force_attack/resources/brute_force_attack.py
+$ python brute_force_attack/resources/parallel.py
 [SUCCESS] Username: root | Password: shadow
 [SUCCESS] Username: admin | Password: shadow
 [SUCCESS] Username: user | Password: shadow

@@ -1,6 +1,7 @@
 ENUMERATION_DIR := KaliLists
 
 setup:
+	brew install gobuster hydra
 	@if [ ! -d "$(ENUMERATION_DIR)" ]; then \
 		git clone git@github.com:3ndG4me/$(ENUMERATION_DIR).git; \
 	fi

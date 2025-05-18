@@ -10,19 +10,13 @@ There are 14 flags to find:
 - TODO: link2
 - TODO: link...
 
-## TODELETE AXEL RANDOM
-
-TODO: enumeration on ?page=
+## REDIRECTS
 
 `index.php?page=redirect&site=http://evil.tld/phishing`
 
 Unvalidated Redirects vs Open Redirects
 
 ## TODELETE GOBUSTER COMMANDS
-
-```console
-$ git clone git@github.com:3ndG4me/KaliLists.git
-```
 
 ```console
 $ gobuster dir -u http://localhost:8080/ -w KaliLists/dirb/big.txt --exclude-length 975
@@ -91,4 +85,43 @@ Progress: 102345 / 102350 (100.00%)
 ===============================================================
 Finished
 ===============================================================
+```
+
+```console
+ffuf -u http://localhost:8080/index.php\?page\=FUZZ -w KaliLists/dirb/big.txt -mc 200 -fs 0 -fr "Wtf"
+
+        /'___\  /'___\           /'___\
+       /\ \__/ /\ \__/  __  __  /\ \__/
+       \ \ ,__\\ \ ,__\/\ \/\ \ \ \ ,__\
+        \ \ \_/ \ \ \_/\ \ \_\ \ \ \ \_/
+         \ \_\   \ \_\  \ \____/  \ \_\
+          \/_/    \/_/   \/___/    \/_/
+
+       v2.1.0-dev
+________________________________________________
+
+ :: Method           : GET
+ :: URL              : http://localhost:8080/index.php?page=FUZZ
+ :: Wordlist         : FUZZ: /media/axbrisse/ugreen/cursus/darkly/KaliLists/dirb/big.txt
+ :: Follow redirects : false
+ :: Calibration      : false
+ :: Timeout          : 10
+ :: Threads          : 40
+ :: Matcher          : Response status: 200
+ :: Filter           : Response size: 0
+ :: Filter           : Regexp: Wtf
+________________________________________________
+
+default                 [Status: 200, Size: 6997, Words: 620, Lines: 134, Duration: 5ms]
+feedback                [Status: 200, Size: 6596, Words: 387, Lines: 108, Duration: 8ms]
+footer                  [Status: 200, Size: 1885, Words: 77, Lines: 55, Duration: 7ms]
+header                  [Status: 200, Size: 3055, Words: 130, Lines: 87, Duration: 5ms]
+media                   [Status: 200, Size: 1885, Words: 77, Lines: 55, Duration: 5ms]
+member                  [Status: 200, Size: 2452, Words: 103, Lines: 72, Duration: 5ms]
+recover                 [Status: 200, Size: 2396, Words: 98, Lines: 72, Duration: 5ms]
+redirect                [Status: 200, Size: 1885, Words: 77, Lines: 55, Duration: 8ms]
+signin                  [Status: 200, Size: 3006, Words: 124, Lines: 86, Duration: 5ms]
+survey                  [Status: 200, Size: 5907, Words: 217, Lines: 212, Duration: 6ms]
+upload                  [Status: 200, Size: 2489, Words: 107, Lines: 78, Duration: 6ms]
+:: Progress: [20469/20469] :: Job [1/1] :: 6060 req/sec :: Duration: [0:00:03] :: Errors: 0 ::
 ```

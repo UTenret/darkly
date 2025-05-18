@@ -10,6 +10,7 @@ setup:
 	@if [ ! -d "$(PASSWORDS_DIR)" ]; then \
 		git clone git@github.com:danielmiessler/$(PASSWORDS_DIR).git; \
 	fi
+	rm -rf $(ENUMERATION_DIR)/.git  $(PASSWORDS_DIR)/.git
 
 clean:
 	rm -rf $(ENUMERATION_DIR) $(PASSWORDS_DIR) hydra.store

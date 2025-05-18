@@ -2,7 +2,7 @@ Vulnerability name: Reflected XSS
 
 How to defend: validate and sanitize input
 
-a weirdly loaded image http://localhost:13080/index.php?page=media&src=1
+a weirdly loaded image http://localhost:8080/index.php?page=media&src=1
 
 after trying a million things
 

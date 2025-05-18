@@ -1,4 +1,4 @@
-## Stored [XSS](https://owasp.org/www-community/attacks/xss/)
+## [Stored XSS](https://owasp.org/www-project-web-security-testing-guide/v41/4-Web_Application_Security_Testing/07-Input_Validation_Testing/02-Testing_for_Stored_Cross_Site_Scripting.html)
 
 This flag is broken. Writing `a` on both the `name` and `message` field is enough to get the flag.
 

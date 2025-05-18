@@ -1,4 +1,4 @@
-## Stored XSS
+## Stored [XSS](https://owasp.org/www-community/attacks/xss/)
 
 This flag is broken. Writing `a` on both the `name` and `message` field is enough to get the flag.
 

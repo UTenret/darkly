@@ -8,7 +8,7 @@ By tring to upload several files, we can see that we can seemingly only send `.j
 - `test.png` → `Your image was not uploaded.`
 - `test.php` → `Your image was not uploaded.`
 
-Local file inclusion doesn't work here: http://localhost:8080/?page=../../../../../../../tmp and
+Path traversal doesn't work here: http://localhost:8080/?page=../../../../../../../tmp and
 http://localhost:8080/?page=../../../../../../../tmp/test.jpeg only say `You can DO it !!!  :]`.
 
 We tried to execute code during the filename validation with a file called `'<?php system($_GET[cmd]); ?>.jpeg'`, however it only resutls in `/tmp/.jpeg succesfully uploaded.`.

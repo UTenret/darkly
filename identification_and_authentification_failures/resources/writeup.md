@@ -11,7 +11,7 @@ $ echo -n 'true' | md5sum
 b326b5062b2f0e69046810717534cb09  -
 ```
 
-Lo and behold, an alert pops up with the flag: `Good job! Flag : df2eb4ba34ed059a1e3e89ff4dfc13445f104a1a52295214def1c4fb1693a5c3`
+We use this as the cookie value and lo and behold, an alert pops up with the flag: `Good job! Flag : df2eb4ba34ed059a1e3e89ff4dfc13445f104a1a52295214def1c4fb1693a5c3`
 
 This vulnerability has several causes:
 

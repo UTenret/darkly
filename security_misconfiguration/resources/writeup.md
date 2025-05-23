@@ -53,7 +53,7 @@ The [dcode cipher identifier](https://www.dcode.fr/cipher-identifier) shows that
 We use a stronger MD5 decoder, [John the Ripper](https://www.openwall.com/john/), which finds the correct password:
 
 ```console
-john --format=Raw-MD5 security_misconfiguration/resources/htpasswd
+$ john --format=Raw-MD5 security_misconfiguration/resources/htpasswd
 Using default input encoding: UTF-8
 Loaded 1 password hash (Raw-MD5 [MD5 128/128 SSE2 4x3])
 Warning: no OpenMP support for this hash type, consider --fork=20

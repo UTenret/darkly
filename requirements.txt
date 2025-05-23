@@ -1,4 +1,5 @@
 aiohttp==3.11.18
 beautifulsoup4==4.13.4
 colorama==0.4.6
+hashcrack-jtr==23.3.26
 requests==2.32.3

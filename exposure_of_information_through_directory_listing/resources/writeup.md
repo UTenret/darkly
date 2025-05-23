@@ -1,6 +1,6 @@
 ## [Exposure of Information Through Directory Listing](https://cwe.mitre.org/data/definitions/548.html)
 
-The http://localhost:8080/robots.txt file shows a `/.hidden` directory. In it, there are a lot of directories and subdirectories, each having a short README taunting us with messages such as `Try again`.
+The http://localhost:8080/robots.txt file that we found with gobuster file shows a `/.hidden` directory. In it, there are a lot of directories and subdirectories, each having a short README taunting us with messages such as `Try again`.
 
 There are too many directories to explore manually so we wrote a crawler and we get:
 

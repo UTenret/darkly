@@ -14,7 +14,7 @@ Let's use this browser : "ft_bornToSec". It will help you a lot.
 [...]
 ```
 
-The first comment is a reference to the referer, an optional HTTP header field that identifies the address of the web page (i.e., the URI or IRI) from which the resource has been requested. [HTTP_referer](https://en.wikipedia.org/wiki/HTTP_referer)
+The first comment is a reference to the referer, an optional HTTP header field that identifies the address of the web page from which the resource has been requested. [HTTP_referer](https://en.wikipedia.org/wiki/HTTP_referer)
 
 The second one is a reference to the user agent, a header indicating the browser which made the request.
 

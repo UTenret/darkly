@@ -11,7 +11,7 @@ By tring to upload several files, we can see that we can seemingly only send `.j
 Path traversal doesn't work here: http://localhost:8080/?page=../../../../../../../tmp and
 http://localhost:8080/?page=../../../../../../../tmp/test.jpeg only say `You can DO it !!!  :]`.
 
-We tried to execute code during the filename validation with a file called `'<?php system($_GET[cmd]); ?>.jpeg'`, however it only resutls in `/tmp/.jpeg succesfully uploaded.`.
+We tried to execute code during the filename validation with a file called `'<?php system($_GET[cmd]); ?>.jpeg'`, however it only results in `/tmp/.jpeg succesfully uploaded.`.
 
 With `curl`, by copying the request sent from a browser and hardcoding the MIME type to `image/jpeg`, we get the flag:
 

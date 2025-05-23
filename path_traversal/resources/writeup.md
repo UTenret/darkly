@@ -2,7 +2,7 @@
 
 Path Traversal occurs when an attacker can manipulate file paths in an application (e.g., through query parameters or user input) to access files or directories outside of the intended directory structure.
 
-The page parameter could be vulnerable to path traversal so we test it and we get a hint that we're on the right track:
+The `page` parameter could be vulnerable to path traversal so we test it and we get a hint that we're on the right track:
 
 http://localhost:8080/index.php?page=../etc/passwd -> `Wtf ?`
 http://localhost:8080/index.php?page=../../etc/passwd -> `Wrong..`

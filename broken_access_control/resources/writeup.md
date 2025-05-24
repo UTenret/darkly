@@ -2,7 +2,7 @@
 
 Clicking on "© BornToSec" at the bottom of the index page leads us to an about page with a weird URL: http://localhost:8080/?page=b7e44c7a40c5f80139f0a50f3650fb2bd8d00b0d24667c4c2ca32c88e13b758f.
 
-The `page` query argument is a sha256 encoded string, which we couldn't decrypt it through bruteforce attack.
+The `page` query argument is a sha256 encoded string, which we couldn't decrypt through bruteforce attack.
 
 Looking at the source code reveals two hints.
 

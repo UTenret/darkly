@@ -118,3 +118,5 @@ Now we we lower case to: `fortytwo` and encode it using SHA256 as asked:
 $ echo -n fortytwo | sha256sum
 10a16d834f9b1e4068b25c4c46fe0284e99e44dceaf08098fc83925ba6310ff5  -
 ```
+
+To defend against SQL injections, use parameterized queries (also known as prepared statements) everywhere so the driver, not your code, handles quoting and type-checking. Escaping tricks like replacing quotes only give a false sense of security—an attacker will just switch to `0x`, `CHAR()` or similar tricks.

@@ -9,3 +9,5 @@ Common vulnerabilities on comment fields are:
 - HTML Injection: A comment like `<iframe src="http://malicious-site.com"></iframe>` can allow any third-party code to run on the client.
 
 All these vulnerabilities can be prevented by proper input sanitization.
+
+A deeper inspection shows that the only letters that trigger the flag are: `aceilprst` which are the letters used in `<script>alert(...)</script>`, which would indeed be used in a stored XSS attack.

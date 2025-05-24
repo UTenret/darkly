@@ -107,4 +107,4 @@ $ echo -n albatroz | sha256sum
 f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188  -
 ```
 
-To defend against SQL injections, use parameterized queries (also known as prepared statements) everywhere so the driver, not your code, handles quoting and type-checking. Escaping tricks like replacing quotes only give a false sense of security—an attacker will just switch to `0x`, `CHAR()` or similar tricks.
+To defend against SQL injections, use parameterized queries (also known as prepared statements) everywhere so the ORM, not your code, handles quoting and type-checking. Escaping tricks like replacing quotes only give a false sense of security—an attacker will just switch to `0x`, `CHAR()` or similar tricks.

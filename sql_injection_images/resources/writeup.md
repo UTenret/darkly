@@ -1,8 +1,6 @@
-Vulnerability name : SQL Injection
+## [SQL Injection](https://owasp.org/www-community/attacks/SQL_Injection)
 
-How to defend : Sanitize user input
-
-We go through each starting from 1 and when arriving at 5
+This vulnerability occurs on the [Search Image](http://localhost:8080/index.php?page=searchimg) page. We try every ID starting from `1` and with `5`, we get this:
 
 ```
 ID: 5
@@ -10,7 +8,11 @@ Title: Hack me ?
 Url : borntosec.ddns.net/images.png
 ```
 
-First we try inputting a single quote to see if an error comes back, as that would
+Since this input field looks very vulnerable to SQL injections, we try a single quote like in the [Members page](./sql_injection_members)
+
+---
+
+First we try withsingle quote to see if an error comes back, as that would
 tell us if this search function is vulnerable for an sql injection.
 Sadly we get nothing back so some amount of sanitization is taking place.
 

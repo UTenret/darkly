@@ -8,7 +8,7 @@ Title: Hack me ?
 Url : borntosec.ddns.net/images.png
 ```
 
-Since this input field looks very vulnerable to SQL injections, we try a single quote like in the [Members page](./sql_injection_members)
+Since this input field looks very vulnerable to SQL injections, we try a single quote like in the [Members page](/sql_injection_members)
 
 ---
 

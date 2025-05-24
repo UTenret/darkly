@@ -4,6 +4,4 @@ On the password recovery page http://localhost:8080/index.php?page=recover, the 
 
 We can inspect, change the mail to whatever we want and submit, giving the flag: 1d4855f7337c0c14b6f44946872c4eb33853f40b2d54393fbe94f49f1e19bbb0
 
-IDOR is now categorized under `Broken Access Control` in the OWASP Top Ten 2021 list.
-
-It can be mitigated by fetching the mail from the server-side user session data, instead of from user-submitted data.
+IDOR is now categorized under `Broken Access Control` in the OWASP Top Ten 2021 list. It can be mitigated by fetching the mail from the server-side user session data, instead of from user-submitted data.

@@ -2,7 +2,7 @@
 
 The index page has a weirdly loaded image http://localhost:8080/index.php?page=media&src=nsa.
 
-Visiting the page and changing the `src` query parameter shows an HTML `<object>` tag, with a `data` attribute which corresponds to `src`. For example, visiting `http://localhost:8080/index.php?page=media&src=ooga` yields `<object data="ooga">`. Like always when user input is used to display HTML content, we can try an XSS attack using an HTML injection.
+Visiting the page and changing the `src` query parameter shows an HTML `<object>` tag, with a `data` attribute which corresponds to `src`. For example, visiting `http://localhost:8080/index.php?page=media&src=ooga` yields `<object data="ooga">`. Like always when user input is used to display HTML content, we can try an XSS attack.
 
 We start by trying an HTML injection with `src=<script>confirm("ooga")</script>`, which isn't executed, likely due to URL sanitization.
 
@@ -21,3 +21,7 @@ PHNjcmlwdD5hbGVydCgib29nYSIpPC9zY3JpcHQ+
 ```
 
 Visiting the page http://localhost:8080/?page=media&src=data:text/html;base64,PHNjcmlwdD5hbGVydCgib2siKTwvc2NyaXB0Pgo= gives us the flag.
+
+This vulnerability is specifically known as Reflected XSS. Reflected cross-site scripting (or XSS) arises when an application receives data in an HTTP request and includes that data within the immediate response in an unsafe way. ([source](https://portswigger.net/web-security/cross-site-scripting/reflected))
+
+To defend against such attacks, you must validate and sanitize inputs to eliminate the ability to inject code. Also, try to not use unsafe features such as `<object>`, and rather use `<img src="/media/<id>.jpg">`.
